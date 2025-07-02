@@ -21,7 +21,6 @@ public class PersonProcessor implements ItemProcessor<Person, Person> {
         final String firstName = person.getFirstName() != null ? person.getFirstName().toUpperCase() : null;
         final String lastName = person.getLastName() != null ? person.getLastName().toUpperCase() : null;
 
-        // Set transformed values in a new Person instance
         Person transformedPerson = new Person();
         transformedPerson.setId(person.getId());
         transformedPerson.setUserId(person.getUserId());

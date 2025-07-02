@@ -6,10 +6,8 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.item.ItemReader;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -48,7 +46,7 @@ public class PersonReader implements ItemReader<Person> {
         person.setGender(row.getCell(3).getStringCellValue());
         person.setEmail(row.getCell(4).getStringCellValue());
         person.setPhone(row.getCell(5).getStringCellValue());
-        person.setDateOfBirth(row.getCell(6).getStringCellValue()); // adjust if format differs
+        person.setDateOfBirth(row.getCell(6).getStringCellValue());
         person.setJobTitle(row.getCell(7).getStringCellValue());
 
         return person;
