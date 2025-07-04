@@ -6,11 +6,10 @@ import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.JobParametersBuilder;
 import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 @Component
-public class JobLauncherRunner implements CommandLineRunner {
+public class JobLauncherRunner {
 
     private final JobLauncher jobLauncher;
     private final Job myJob;
@@ -21,7 +20,6 @@ public class JobLauncherRunner implements CommandLineRunner {
         this.myJob = myJob;
     }
 
-    @Override
     public void run(String... args) throws Exception {
         System.out.println("Launching batch job...");
 

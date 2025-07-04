@@ -9,7 +9,6 @@ import org.springframework.batch.core.job.builder.JobBuilder;
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.step.builder.StepBuilder;
 import org.springframework.batch.item.ItemReader;
-import org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider;
 import org.springframework.batch.item.database.JdbcBatchItemWriter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -55,14 +54,9 @@ public class SpringBatchConfig {
     }
 
     @Bean
+    @StepScope
     public JdbcBatchItemWriter<Person> personDbWriter(DataSource dataSource) {
-        JdbcBatchItemWriter<Person> writer = new JdbcBatchItemWriter<>();
-        writer.setItemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<>());
-        writer.setSql("INSERT INTO details (user_id, first_name, last_name, gender, email, phone, date_of_birth, job_title) " +
-                "VALUES (:userId, :firstName, :lastName, :gender, :email, :phone, :dateOfBirth, :jobTitle)");
-        writer.setDataSource(dataSource);
-        return writer;
+        return PersonWriter.personDbWriter(dataSource);
     }
-
 
 }
